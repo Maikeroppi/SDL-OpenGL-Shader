@@ -1,17 +1,9 @@
-﻿Build started 3/12/2012 10:13:32 PM.
+﻿Build started 10/31/2012 9:39:22 PM.
      1>Project "C:\Dropbox\SDL-OpenGL-Shader\SDL-OpenGL-Shader\SDL-OpenGL-Shader.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\SDL-OpenGL-Shader.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CubeWithShaders.cpp GLSL_ShaderManager.cpp main.cpp
-         main.cpp
-         Generating Code...
-         Compiling...
-         GLSL_ShaderManager.cpp
-     1>c:\dropbox\sdl-opengl-shader\sdl-opengl-shader\glsl_shadermanager.cpp(77): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(188) : see declaration of 'strncpy'
-         CubeWithShaders.cpp
-         Generating Code...
+         All outputs are up-to-date.
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Dropbox\SDL-OpenGL-Shader\Debug\SDL-OpenGL-Shader.exe" /NOLOGO SDL.lib SDLmain.lib opengl32.lib glew32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\SDL-OpenGL-Shader.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Dropbox\SDL-OpenGL-Shader\Debug\SDL-OpenGL-Shader.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Dropbox\SDL-OpenGL-Shader\Debug\SDL-OpenGL-Shader.lib" /MACHINE:X86 Debug\CubeWithShaders.obj
          Debug\GLSL_ShaderManager.obj
@@ -27,4 +19,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.12
+Time Elapsed 00:00:01.69

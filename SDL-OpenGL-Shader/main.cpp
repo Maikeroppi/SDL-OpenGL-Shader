@@ -12,7 +12,7 @@ int main( int argc, char* args[] )
 { 
 	// Allocate cube demo to run at 1280x720 with 32 bit pixels
 	CubeWithShaders cubeDemo(1280, 720, 32);	
-
+	
 	// Initialize demo
 	if(!cubeDemo.Init()) {
 		cout << "Error initializing Cube Demo. Returning..." << endl;

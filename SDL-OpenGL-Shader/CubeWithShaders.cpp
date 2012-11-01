@@ -94,12 +94,24 @@ CubeWithShaders::CubeWithShaders()
 }
 
 CubeWithShaders::CubeWithShaders(GLuint ScreenWidth, GLuint ScreenHeight, GLuint ScreenBpp)
-	: ScreenWidth(ScreenWidth), ScreenHeight(ScreenHeight), ScreenBpp(ScreenBpp),
-	vertBuffID(0), vertElemID(0), vertColorID(0),
-	programID(0), vertexShaderID(0), fragmentShaderID(0),
-	rotationID(0), running(true), CurRotateDeg(0.0),
-	frameTime(0.0f), frameStartTick(0), fpsCapped(true), maxFPS(60.0f), maxFPSTime(1000.0f / maxFPS),
-	WindowMessage(), fpsString()
+	: ScreenWidth(ScreenWidth), ScreenHeight(ScreenHeight)
+	, ScreenBpp(ScreenBpp)
+	, vertBuffID(0)
+	, vertElemID(0)
+	, vertColorID(0)
+	, programID(0)
+	, vertexShaderID(0)
+	, fragmentShaderID(0)
+	, MasterMatrixID(0)
+	, running(true)
+	, CurRotateDeg(0.0)
+	, frameTime(0.0f)
+	, frameStartTick(0)
+	, fpsCapped(true)
+	, maxFPS(60.0f)
+	, maxFPSTime(1000.0f / maxFPS)
+	, WindowMessage()
+	, fpsString()
 {
 	// Initialize arrays as we can't put them in the initialization list.
 	RotationValues[0] = RotationValues[1] = RotationValues[2] = 0.0f;
@@ -171,6 +183,12 @@ bool CubeWithShaders::Init()
 		return false;
 	}	
 
+	// Initialize our static matrices
+	View		= glm::perspective(60.0f, (16.0f / 9.0f), 0.1f, 10.0f);
+	Translate	= glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, -4.0));
+	Scale		= glm::scale(glm::mat4(1.0), glm::vec3(4.0/3.0));
+	View = View * Scale * Translate;
+
 	return true;
 }
 
@@ -217,7 +235,7 @@ bool CubeWithShaders::BuildShaders()
 		glUseProgram(programID);		 
 	 
 		// Get the locations of our uniform attributes
-		rotationID = glGetUniformLocation(programID, "rot");
+		MasterMatrixID = glGetUniformLocation(programID, "MasterMatrix");
 		ret_val = true;
 	}
 	
@@ -231,8 +249,13 @@ void CubeWithShaders::Render()
 
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	
-	// Update RotationValues on GPU	
-	glUniform3fv(rotationID, 1, RotationValues);
+	// Send master matrix to GPU
+	glUniformMatrix4fv(
+		MasterMatrixID,					// GL ID
+		1,								// size (1 4x4 matrix)
+		false,							// transposed?
+		glm::value_ptr(MasterMatrix)	// data element
+	);
 
 	// Bind vertices
 	glBindBuffer(GL_ARRAY_BUFFER, vertBuffID);
@@ -307,6 +330,10 @@ void CubeWithShaders::Update()
 	// Update the rotation array for the vertex shader
 	CurRotateDeg+=0.5;
 	RotationValues[0] = RotationValues[1] = RotationValues[2] = CurRotateDeg;
+
+	// Update rotation and master matrices
+	Rotation = glm::rotate(glm::mat4(1.0), CurRotateDeg, glm::vec3(1.0));
+	MasterMatrix = View * Rotation;// * RotY * RotZ;
 }
 
 bool CubeWithShaders::IsRunning()

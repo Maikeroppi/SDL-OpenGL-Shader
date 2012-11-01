@@ -10,6 +10,11 @@
 #include "GL/glew.h"
 #include "SDL_opengl.h"
 #include "SDL.h"
+#include "glm.hpp"
+#include "gtc\matrix_transform.hpp"
+#include "gtc/type_ptr.hpp"
+
+
 #include <math.h>
 #include <iostream>
 #include <fstream>
@@ -52,24 +57,33 @@ private:
 	bool BuildShaders();
 
 	// Member variables
-	GLuint ScreenWidth, ScreenHeight, ScreenBpp;
-	GLfloat RotationValues[3];
-	GLfloat CurRotateDeg;
-	SDL_Event sdevent;
-	bool	running, fpsCapped;
-	int		frameStartTick;
-	float	frameTime, maxFPS, maxFPSTime;
+	GLuint			ScreenWidth, ScreenHeight, ScreenBpp;
+	GLfloat			RotationValues[3];
+	GLfloat			CurRotateDeg;
+	SDL_Event		sdevent;
+	bool			running, fpsCapped;
+	int				frameStartTick;
+	float			frameTime, maxFPS, maxFPSTime;
 	string			WindowMessage;
 	stringstream	fpsString;
 
 	// GL IDs for various parts of our program that require them
-	GLuint vertBuffID, vertElemID, vertColorID;
-	GLuint programID, vertexShaderID, fragmentShaderID;
-	GLuint	rotationID;
+	GLuint			vertBuffID, vertElemID, vertColorID;
+	GLuint			programID, vertexShaderID, fragmentShaderID;
+	GLuint			MasterMatrixID;
 
 	// Define variables for cube data
 	static const GLfloat CubeVertexData[];
 	static const GLushort CubeElementData[];
 	static const GLfloat CubeColors[];
+
+	// Define GLM variables for calculating our View/Scale/Rotation Matrix
+	// Before sending it to the GPU
+	glm::mat4		Rotation;
+	glm::mat4		Scale;
+	glm::mat4		Translate;
+	glm::mat4		View;
+	glm::mat4		StaticMatrix;
+	glm::mat4		MasterMatrix;
 };
 #endif

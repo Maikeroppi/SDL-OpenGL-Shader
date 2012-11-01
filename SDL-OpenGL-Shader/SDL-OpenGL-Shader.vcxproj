@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Dropbox\SDL-1.2.14\include;C:\Dropbox\glew-1.7.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Dropbox\SDL-1.2.14\include;C:\Dropbox\glew-1.7.0\include;C:\Dropbox\glm-0.9.3.4\glm;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Dropbox\SDL-1.2.14\lib;C:\Dropbox\glew-1.7.0\lib;$(LibraryPath)</LibraryPath>
