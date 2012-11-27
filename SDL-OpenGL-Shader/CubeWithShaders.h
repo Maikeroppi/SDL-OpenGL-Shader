@@ -34,8 +34,7 @@ class CubeWithShaders
 public:
 	// Initialization.  By default, CubeWithShaders will assume a default screen size of 
 	// 1280x720 with 32bpp.
-	CubeWithShaders();
-	CubeWithShaders(GLuint ScreenWidth, GLuint ScreenHeight, GLuint ScreenBpp);
+	CubeWithShaders(GLuint ScreenWidth=1280, GLuint ScreenHeight=720, GLuint ScreenBpp=32);
 
 	// Init to actually intialize object. If any memory allocation needs to be done, it will happen here.
 	bool Init();

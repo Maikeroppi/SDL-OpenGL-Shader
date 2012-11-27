@@ -88,13 +88,9 @@ const GLfloat CubeWithShaders::CubeColors[] = {
 
   };
 
-CubeWithShaders::CubeWithShaders()
-{
-	CubeWithShaders(1280, 720, 32);
-}
-
 CubeWithShaders::CubeWithShaders(GLuint ScreenWidth, GLuint ScreenHeight, GLuint ScreenBpp)
-	: ScreenWidth(ScreenWidth), ScreenHeight(ScreenHeight)
+	: ScreenWidth(ScreenWidth)
+	, ScreenHeight(ScreenHeight)
 	, ScreenBpp(ScreenBpp)
 	, vertBuffID(0)
 	, vertElemID(0)
